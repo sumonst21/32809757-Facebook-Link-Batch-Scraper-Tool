@@ -1,4 +1,9 @@
 <?php
+/**
+ * FacebookDebugger
+ *
+ * @author sumonst21 <sumonst21@gmail.com>
+ */
 class FacebookDebugger
 {
 	public $accessToken = '';
@@ -6,7 +11,13 @@ class FacebookDebugger
 	{
 		$this->accessToken = getenv('FACEBOOK_ACCESS_TOKEN');
 	}
-	public function reload($url)
+
+    /**
+     * @param $url
+     * @return bool|string
+     * @throws Exception
+     */
+    public function reload($url)
 	{
 		$graph = 'https://graph.facebook.com/';
 		if (empty($this->accessToken)) {
@@ -16,6 +27,11 @@ class FacebookDebugger
 		return $this->send_post($graph, $post);
 	}
 
+    /**
+     * @param $url
+     * @param $post
+     * @return bool|string
+     */
 	private function send_post($url, $post)
 	{
 		$r = curl_init();
