@@ -6,7 +6,7 @@
  */
 class FacebookDebugger
 {
-	public $accessToken = '';
+	public string $accessToken = '';
 	public function __construct()
 	{
 		$this->accessToken = getenv('FACEBOOK_ACCESS_TOKEN');
@@ -17,8 +17,8 @@ class FacebookDebugger
      * @return bool|string
      * @throws Exception
      */
-    public function reload($url)
-	{
+    public function reload($url): bool|string
+    {
 		$graph = 'https://graph.facebook.com/';
 		if (empty($this->accessToken)) {
 			throw new Exception('FACEBOOK_ACCESS_TOKEN is not set');
@@ -32,8 +32,8 @@ class FacebookDebugger
      * @param $post
      * @return bool|string
      */
-	private function send_post($url, $post)
-	{
+	private function send_post($url, $post): bool|string
+    {
 		$r = curl_init();
 		curl_setopt($r, CURLOPT_URL, $url);
 		curl_setopt($r, CURLOPT_POST, 1);
